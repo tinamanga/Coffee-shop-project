@@ -1,3 +1,5 @@
+
+from order import Order
 class cofee:
     all_coffees = []  # list of all coffees
 
@@ -6,7 +8,7 @@ class cofee:
         Coffee.all_coffees.append(self)
 
     def set_name(self, name):
-        
+
         # name must be at least 3 characters
         if isinstance(name, str) and len(name) >= 3:
             self._name = name

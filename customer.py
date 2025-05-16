@@ -1,3 +1,5 @@
+
+from order import Order
 class custommer:
      all_customers = [] 
      def __init__(self, name):
