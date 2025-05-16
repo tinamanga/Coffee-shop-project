@@ -34,7 +34,7 @@ class custommer:
 
      @classmethod
      def biggest_spender(cls, coffee):
-        # find which customer spent the most on this coffee
+        # finding, which customer spent the most on this coffee
         spend = {}
         for order in Order.all_orders:
             if order.coffee == coffee:
