@@ -1,6 +1,6 @@
 
 from order import Order
-class custommer:
+class Customer:
      all_customers = [] 
      def __init__(self, name):
 
@@ -10,7 +10,7 @@ class custommer:
 
      def set_name(self, name):
 
-        # check name is a short string
+        # check name is a short string between 1 and 15 characters
         if isinstance(name, str) and 1 <= len(name) <= 15:
             self._name = name
         else:
@@ -35,14 +35,17 @@ class custommer:
         return Order(self, coffee, price)
 
      @classmethod
-     def biggest_spender(cls, coffee):
-        # finding, which customer spent the most on this coffee
-        spend = {}
+     def most_aficionado(cls, coffee):
+        # Returning the customer who spent the most on the given coffee
+        spending = {}
+
         for order in Order.all_orders:
             if order.coffee == coffee:
-                if order.customer not in spend:
-                    spend[order.customer] = 0
-                spend[order.customer] += order.price
-        if spend:
-            return max(spend, key=spend.get)
-        return None
+                if order.customer not in spending:
+                    spending[order.customer] = 0
+                spending[order.customer] += order.price
+
+        if not spending:
+            return None
+        
+        return max(spending, key=spending.get)

@@ -1,40 +1,38 @@
 
-from order import Order
-class cofee:
-    all_coffees = []  # list of all coffees
-
+class Coffee:
     def __init__(self, name):
-        self.set_name(name)
-        Coffee.all_coffees.append(self)
+        # Set the name when creating a coffee
+        self.name = name
 
-    def set_name(self, name):
-
-        # name must be at least 3 characters
-        if isinstance(name, str) and len(name) >= 3:
-            self._name = name
-        else:
-            raise Exception("Name must be at least 3 characters.")
-
-    def get_name(self):
+    @property
+    def name(self):
         return self._name
 
-    name = property(get_name, set_name)
+    @name.setter
+    def name(self, value):
+        # Name must be a string with at least 3 characters
+        if isinstance(value, str) and len(value) >= 3:
+            self._name = value
+        else:
+            raise ValueError("Coffee name must be a string with at least 3 characters")
 
     def orders(self):
-        # return orders for this coffee
+        # Return all orders for this coffee
+        from order import Order  # Local import to avoid circular import
         return [order for order in Order.all_orders if order.coffee == self]
 
     def customers(self):
-        # return all customers who ordered this coffee
-        return list(set([order.customer for order in self.orders()]))
+        # Return unique customers who ordered this coffee
+        return list(set(order.customer for order in self.orders()))
 
-    def total_orders(self):
-        # count how many orders for this coffee
+    def num_orders(self):
+        # Total number of orders for this coffee
         return len(self.orders())
 
     def get_average_price(self):
-        prices = [order.price for order in self.orders()]
-        if prices:
-            return sum(prices) / len(prices)
-        else:
-            return 0
+        # Return average price of this coffee
+        orders = self.orders()
+        if not orders:
+            return 0  # No orders yet
+        total = sum(order.price for order in orders)
+        return total / len(orders)

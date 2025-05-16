@@ -1,8 +1,7 @@
-
 from customer import Customer
 from coffee import Coffee
 
-# Make some customers
+# Making some customers
 c1 = Customer("Alex")
 c2 = Customer("Sara")
 
@@ -10,13 +9,13 @@ c2 = Customer("Sara")
 latte = Coffee("Latte")
 cappuccino = Coffee("Cappuccino")
 
-# Customers create orders
+# Customers creating orders
 o1 = c1.create_order(latte, 4.5)
 o2 = c1.create_order(cappuccino, 3.0)
 o3 = c2.create_order(latte, 5.0)
 o4 = c2.create_order(latte, 5.5)
 
-# Show what each customer ordered
+# Showing what each customer ordered
 print("Alex ordered:")
 for coffee in c1.coffees():
     print(coffee.name)
@@ -25,9 +24,12 @@ print("Sara ordered:")
 for coffee in c2.coffees():
     print(coffee.name)
 
-# Show average price of latte
+# Showing average price of latte
 print("Average price of Latte:", latte.get_average_price())
 
-# Find who spent the most on Latte
-top = Customer.biggest_spender(latte)
-print("Top Latte spender:", top.name)
+# Finding who spent the most on Latte
+top = Customer.most_aficionado(latte)
+if top:
+    print("Top Latte spender:", top.name)
+else:
+    print("No orders for Latte.")
