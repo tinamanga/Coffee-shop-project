@@ -5,15 +5,15 @@ from coffee import Coffee
 c1 = Customer("Alex")
 c2 = Customer("Sara")
 
-# Make some coffees
+# Making some coffees
 latte = Coffee("Latte")
 cappuccino = Coffee("Cappuccino")
 
 # Customers creating orders
-o1 = c1.create_order(latte, 4.5)
-o2 = c1.create_order(cappuccino, 3.0)
-o3 = c2.create_order(latte, 5.0)
-o4 = c2.create_order(latte, 5.5)
+c1.create_order(latte, 4.5)
+c1.create_order(cappuccino, 3.0)
+c2.create_order(latte, 5.0)
+c2.create_order(latte, 5.5)
 
 # Showing what each customer ordered
 print("Alex ordered:")
